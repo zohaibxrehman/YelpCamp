@@ -9,39 +9,24 @@ mongoose.connect('mongodb://localhost:27017/yelp_camp', { useNewUrlParser: true,
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
-// Campground.create(
-// 	{
-// 		name: 'Salmon Creek',
-// 		image:
-// 			'https://images.unsplash.com/photo-1510312305653-8ed496efae75?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60https://pixabay.com/get/55e8dc404f5aab14f1dc84609620367d1c3ed9e04e5074417c2772d4964fc2_340',
-// 		description: 'For those that seek adventure amongst the wild! Kayaking and rock climbing included.'
-// 	},
-// 	function(err, campground) {
-// 		if (err) {
-// 			console.log(err);
-// 		} else {
-// 			console.log('NEWLY CREATED CAMPGROUND: ');
-// 			console.log(campground);
-// 		}
-// 	}
-// );
-
 seed();
 
 app.get('/', function(req, res) {
 	res.render('landing');
 });
 
+// INDEX
 app.get('/campgrounds', function(req, res) {
 	Campground.find({}, function(err, campgrounds) {
 		if (err) {
 			console.log(err);
 		} else {
-			res.render('index', { campgrounds: campgrounds });
+			res.render('campground/index', { campgrounds: campgrounds });
 		}
 	});
 });
 
+// CREATE
 app.post('/campgrounds', function(req, res) {
 	// res.send('Hello bro');
 	var name = req.body.name;
@@ -57,19 +42,23 @@ app.post('/campgrounds', function(req, res) {
 	});
 });
 
+// NEW
 app.get('/campgrounds/new', function(req, res) {
-	res.render('new');
+	res.render('campground/new');
 });
 
+// SHOW
 app.get('/campgrounds/:id', function(req, res) {
 	Campground.findById(req.params.id).populate('comments').exec(function(err, foundCampground) {
 		if (err) {
 			console.log(err);
 		} else {
-			res.render('show', { campground: foundCampground });
+			res.render('campground/show', { campground: foundCampground });
 		}
 	});
 });
+
+// COMMENT ROUTES
 
 app.listen(3000, function() {
 	console.log('The YelpCamp serving on PORT 3000');
