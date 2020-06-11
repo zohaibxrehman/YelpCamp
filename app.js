@@ -109,12 +109,12 @@ app.post('/campgrounds/:id/comments', function(req, res) {
 });
 
 // show register form
-app.get("/register", function(req, res){
+app.get('/register', function(req, res){
 	res.render("register"); 
  });
 
  // register logic
-app.post("/register", function(req, res){
+app.post('/register', function(req, res){
 	var newUser = new User({username: req.body.username});
 	User.register(newUser, req.body.password, function(err, user){
 		if(err){
@@ -126,6 +126,20 @@ app.post("/register", function(req, res){
 		});
 	});
 });
+
+// show log in form
+app.get('/login', function(req, res){
+	res.render("login"); 
+});
+
+ // log in logic
+app.post('/login', passport.authenticate("local", 
+	{
+		successRedirect: "/campgrounds",
+		failureRedirect: "/login"
+	}), function(req, res){
+});
+
 
 app.listen(3000, function() {
 	console.log('The YelpCamp serving on PORT 3000');
