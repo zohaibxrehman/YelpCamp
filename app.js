@@ -132,7 +132,7 @@ app.get('/login', function(req, res){
 	res.render("login"); 
 });
 
- // log in logic
+ // log in
 app.post('/login', passport.authenticate("local", 
 	{
 		successRedirect: "/campgrounds",
@@ -140,6 +140,11 @@ app.post('/login', passport.authenticate("local",
 	}), function(req, res){
 });
 
+// logout
+app.get("/logout", function(req, res){
+	req.logout();
+	res.redirect("/campgrounds");
+ });
 
 app.listen(3000, function() {
 	console.log('The YelpCamp serving on PORT 3000');
