@@ -26,7 +26,11 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-
+// middleware supplying user info to every route
+app.use(function(req, res, next){
+	res.locals.currentUser = req.user;
+	next();
+});
 // seed();
 
 app.get('/', function(req, res) {
@@ -77,7 +81,7 @@ app.get('/campgrounds/:id', function(req, res) {
 });
 
 // COMMENT ROUTES
-app.get('/campgrounds/:id/comments/new', function(req, res) {
+app.get('/campgrounds/:id/comments/new', isLoggedIn, function(req, res) {
 	// find campground by id
 	Campground.findById(req.params.id, function(err, campground) {
 		if (err) {
@@ -88,7 +92,7 @@ app.get('/campgrounds/:id/comments/new', function(req, res) {
 	});
 });
 
-app.post('/campgrounds/:id/comments', function(req, res) {
+app.post('/campgrounds/:id/comments', isLoggedIn, function(req, res) {
 	//lookup campground using ID
 	Campground.findById(req.params.id, function(err, campground) {
 		if (err) {
@@ -145,6 +149,13 @@ app.get("/logout", function(req, res){
 	req.logout();
 	res.redirect("/campgrounds");
  });
+
+function isLoggedIn(req, res, next){
+	if(req.isAuthenticated()){
+		return next();
+	}
+	res.redirect("/login");
+}
 
 app.listen(3000, function() {
 	console.log('The YelpCamp serving on PORT 3000');
