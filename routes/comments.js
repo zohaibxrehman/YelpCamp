@@ -24,6 +24,9 @@ router.post('/', isLoggedIn, function(req, res) {
 			res.redirect('/campgrounds');
 		} else {
 			Comment.create(req.body.comment, function(err, comment) {
+				comment.author.id = req.user._id;
+				comment.author.username = req.user.username;
+				comment.save();
 				if (err) {
 					console.log(err);
 				} else {
