@@ -35,10 +35,9 @@
             </div>
             <hr>
             <% campground.comments.forEach(function(comment){ %>
-                <div class="row">
+                <div class="row" style="margin-bottom: 1rem;">
                     <div class="col-md-12">
                         <strong><%= comment.author.username %></strong>
-                        <span class="pull-right">10 days ago</span>
                         <p>
                             <%= comment.text %> 
                         </p>
@@ -50,6 +49,7 @@
                                 <button class="btn btn-xs btn-danger">Delete</button>
                             </form>
                         <% }%>
+                        <span class="pull-right">10 days ago</span>
                     </div>
                 </div>
             <% }) %>
