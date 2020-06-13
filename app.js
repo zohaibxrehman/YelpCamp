@@ -4,6 +4,7 @@ var express = require('express'),
 	mongoose = require('mongoose'),
 	passport = require('passport'),
 	LocalStrategy = require('passport-local'),
+	flash = require("connect-flash"),
 	methodOverride = require('method-override'),
 	seed = require('./seed'),
 	Comment = require('./models/comment'),
@@ -20,6 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 app.use(methodOverride('_method'));
+app.use(flash());
 
 // PASSPORT CONFIGURATION
 app.use(
