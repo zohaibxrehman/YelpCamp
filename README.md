@@ -1,6 +1,12 @@
 ## YelpCamp
 
-YelpCamp is a website which offers crowdsourced reviews for campgrounds. Sellers can advertise new campgrounds with photos and Google Map locations and users can review the camps. 
+YelpCamp is a website which offers crowdsourced reviews for campgrounds. Sellers can advertise new campgrounds with photos and Google Map locations and users can review the camps.
+
+<div float='left'>
+<img src='https://i.imgur.com/cqDUFN0.png' height=250 hspace=20/>  
+<img src='https://i.imgur.com/3ipsldo.png' height=250 />
+</div>
+
 
 This project was created using Node.js, Express, MongoDB, EJS and Bootstrap.
 Passport.js has been used to handle authentication.
