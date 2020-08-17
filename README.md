@@ -31,7 +31,7 @@ Managing posts is only allowed to the OP(Original Poster).
 
 Editing or deleting posts and comments is only allowed to the OP.
 
-### Campground CRUD
+### Campground and Comment CRUD (Create, Read, Update, Destroy)
 
 Create, edit and delete posts and comments implemented with **RESTful routing.**
 
