@@ -48,9 +48,6 @@ The website has been designed to scale correctly on all display sizes; mobile, t
 ### Install Node JS
 Refer to https://nodejs.org/en/ to install nodejs
 
-```bash
-npm install -g create-react-app
-```
 
 ### Install dependencies and run
 
