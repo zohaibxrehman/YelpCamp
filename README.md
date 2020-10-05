@@ -12,8 +12,8 @@ Connect flash has been used to flash messages to enhance the user experience wit
 For a complete list of dependencies, check out the package.json file.
 
 
-<img src='https://i.imgur.com/cqDUFN0.png' height=350 />  
-<img src='https://i.imgur.com/3ipsldo.png' height=350 />
+<img src='https://i.imgur.com/cqDUFN0.png' height=500 />  
+<img src='https://i.imgur.com/3ipsldo.png' height=500 />
 
 ## Features
 
